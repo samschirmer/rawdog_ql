@@ -1,10 +1,13 @@
 .idea
 .idea/*
 tests/.env
+rawdog_ql/__pycache__
+rawdog_ql/__pycache__/*
 tests/__pycache__
 tests/__pycache__/*
 tests/.DS_Store
 .pytest_cache
 .pytest_cache/*
+.DS_Store
 
 
