@@ -28,7 +28,10 @@ from rawdog_ql import select_one_by_query
 
 # Assuming you have an async database connection "db"
 async def get_user():
-    result = await select_one_by_query(db, "SELECT * FROM users WHERE id = ?", (1,))
+    result = await select_one_by_query(db, "SELECT id, name FROM users WHERE id = ?", (1,))
+    print(results)
+    # {"id": 123, "name": "Alec Holland"}
+    
 ```
 
 ### Insert Returning ID + Transactions
@@ -49,7 +52,7 @@ async def create_album():
             {"query": "INSERT INTO songs (album_id, name) VALUES (?, ?)", "params": (new_id, "Holy Mountain"), "msg": err_msg},
             {"query": "INSERT INTO songs (album_id, name) VALUES (?, ?)", "params": (new_id, "Sonic Titan"), "msg": err_msg}
         ]
-        await insert_transaction(db, txn_queries)
+        await insert_transaction(sqlsrv_db, txn_queries)
     except Exception as e:
         print(e)
 ```
